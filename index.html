@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Personal Game Library</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <main>
+            <section id="searchGame">
+                <h2 class="title">Search for a Game</h2>
+
+                <form id="gameSearchForm">
+                    <input type="text" id="gameSearch" />
+                    <input
+                        type="submit"
+                        id="search"
+                        class="button"
+                        value="Search"
+                    />
+                </form>
+
+                <p id="notFound">Game not found</p>
+            </section>
+
+            <div id="searchResults">
+                <h2>Search Results</h2>
+                <div id="games"></div>
+            </div>
+
+            <section id="discover">
+                <h2 class="title">Recommended Highly Rated Games</h2>
+
+                <p>Here are some popular games that might interest you</p>
+
+                <div id="discoverGames"></div>
+            </section>
+
+            <section id="library">
+                <h2 class="title">My Library</h2>
+                <p id="duplicate">Game already in library</p>
+                <div id="libraryControls">
+                    <div id="libraryFilters">
+                        <input
+                            type="button"
+                            id="all"
+                            class="button"
+                            value="All"
+                        />
+                        <input
+                            type="button"
+                            id="completed"
+                            class="button"
+                            value="Completed"
+                        />
+                        <input
+                            type="button"
+                            id="playing"
+                            class="button"
+                            value="Playing"
+                        />
+                        <input
+                            type="button"
+                            id="wishlist"
+                            class="button"
+                            value="Wishlist"
+                        />
+                        <input
+                            type="button"
+                            id="recent"
+                            class="button"
+                            value="Recently Added"
+                        />
+                        <input
+                            type="button"
+                            id="favorites"
+                            class="button"
+                            value="Favorited"
+                        />
+                    </div>
+
+                    <div id="sortOptions">
+                        <label for="sortBy">Sort by:</label>
+                        <select id="sortBy">
+                            <option class="option" value="titleAZ">
+                                Title: A-Z
+                            </option>
+                            <option class="option" value="titleZA">
+                                Title: Z-A
+                            </option>
+                            <option class="option" value="ratingHigh">
+                                Rating: Highest
+                            </option>
+                            <option class="option" value="ratingLow">
+                                Rating: Lowest
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="librayStats">
+                    <p id="gameCount"></p>
+                    <p id="playingCount"></p>
+                    <p id="completedCount"></p>
+                    <p id="wishlistCount"></p>
+                </div>
+
+                <div id="libraryGames"></div>
+            </section>
+        </main>
+
+        <script src="script.js"></script>
+    </body>
+</html>

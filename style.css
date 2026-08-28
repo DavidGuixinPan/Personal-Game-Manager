@@ -1,0 +1,278 @@
+body {
+    background-color: #101418;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+h3 {
+    margin-top: 10px;
+}
+
+.title,
+h2,
+h3,
+li,
+p {
+    color: #e8eaed;
+}
+
+#searchGame,
+#searchResults,
+#library,
+#discover {
+    margin-bottom: 50px;
+}
+
+h4 {
+    display: none;
+    color: #ff0000;
+}
+
+#discoverGames,
+#games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+#container {
+    margin-bottom: 20px;
+}
+
+#notFound {
+    display: none;
+}
+
+#duplicate {
+    display: none;
+    color: #ff0000;
+}
+
+label[for="sortBy"] {
+    color: #e8eaed;
+}
+
+input[type="text"] {
+    border: solid 1px;
+    border-radius: 6px;
+    padding: 10px;
+    background-color: #2b2b2b;
+    color: #e8eaed;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #6c8cff;
+}
+
+.gameCard {
+    display: flex;
+    flex-direction: column;
+    min-height: 320px;
+    width: 200px;
+    padding: 10px;
+    background-color: #2b2b2b;
+    border-radius: 10px;
+    text-align: center;
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+.gameCard h3 {
+    min-height: 45px;
+}
+
+.gameCard a {
+    color: #8ab4f8;
+    text-decoration: none;
+}
+
+.gameCard a:hover {
+    color: #a8c7fa;
+    text-decoration: underline;
+}
+
+.gameCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.gameImage {
+    width: 100%;
+    height: 125px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+select {
+    margin: 10px;
+}
+
+.button {
+    appearance: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: #3a3f44;
+    color: #e8eaed;
+    margin: 5px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    transition:
+        background-color 0.2s,
+        transform 0.2s;
+}
+
+.button:hover {
+    background-color: #4a5056;
+    transform: translateY(-1px);
+}
+
+.button:active {
+    transform: translateY(1px);
+}
+
+#sortOptions select {
+    background-color: #101418;
+    color: #e8eaed;
+    padding: 3px;
+    border-radius: 10px;
+}
+
+#discoverGames,
+#libraryGames {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+#libraryFilters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+#libraryControls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-wrap: 20px;
+}
+
+#gameSearchForm {
+    display: flex;
+    gap: 8px;
+}
+
+#gameSearch {
+    width: 300px;
+}
+
+.statusSelect {
+    background-color: #3a3f44;
+    color: #e8eaed;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    padding: 8px 10px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.remove {
+    background-color: #3a3f44;
+    color: #e8eaed;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition:
+        background-color 0.2s,
+        transform 0.2s;
+}
+
+.rating {
+    background-color: #3a3f44;
+    color: #e8eaed;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    padding: 4px 2px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    transition:
+        background-color 0.2s,
+        transform 0.2s;
+}
+
+.statusSelect:hover,
+.rating:hover {
+    background-color: #4a5056;
+}
+
+.remove:hover {
+    background-color: #5a4141;
+    transform: translateY(-1px);
+}
+
+.statusSelect:active,
+.remove:active,
+.rating:active {
+    transform: translateY(1px);
+}
+
+.favoriteButton {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 30px;
+    color: #777;
+    cursor: pointer;
+    transition:
+        transform 0.2s,
+        color 0.2s;
+}
+
+.favoriteButton:hover {
+    transform: scale(1.1);
+}
+
+.gameNotes {
+    width: 90%;
+    min-height: 70px;
+    margin: 10px auto;
+    padding: 5px;
+    background-color: #101418;
+    color: #e8eaed;
+    border-radius: 6px;
+    resize: vertical;
+    border: 1px solid #343a40;
+    outline: none;
+}
+
+.gameNotes:focus {
+    border-color: #6c8cff;
+}
