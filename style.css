@@ -1,3 +1,4 @@
+/* Main */
 body {
     background-color: #101418;
     max-width: 1440px;
@@ -26,6 +27,11 @@ h3 {
     margin-top: 10px;
 }
 
+h4 {
+    display: none;
+    color: #ff0000;
+}
+
 .title,
 h2,
 h3,
@@ -34,6 +40,7 @@ p {
     color: #e8eaed;
 }
 
+/* Sections */
 #searchGame,
 #searchResults,
 #library,
@@ -41,33 +48,18 @@ p {
     margin-bottom: 50px;
 }
 
-h4 {
-    display: none;
-    color: #ff0000;
-}
-
-#discoverGames,
-#games {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
 #container {
     margin-bottom: 20px;
 }
 
-#notFound {
-    display: none;
+/* Search */
+#gameSearchForm {
+    display: flex;
+    gap: 8px;
 }
 
-#duplicate {
-    display: none;
-    color: #ff0000;
-}
-
-label[for="sortBy"] {
-    color: #e8eaed;
+#gameSearch {
+    width: 300px;
 }
 
 input[type="text"] {
@@ -81,6 +73,16 @@ input[type="text"] {
 input[type="text"]:focus {
     outline: none;
     border-color: #6c8cff;
+}
+
+/* Game Search */
+
+#discoverGames,
+#libraryGames,
+#games {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
 }
 
 .gameCard {
@@ -97,20 +99,6 @@ input[type="text"]:focus {
         box-shadow 0.2s;
 }
 
-.gameCard h3 {
-    min-height: 45px;
-}
-
-.gameCard a {
-    color: #8ab4f8;
-    text-decoration: none;
-}
-
-.gameCard a:hover {
-    color: #a8c7fa;
-    text-decoration: underline;
-}
-
 .gameCard:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
@@ -123,10 +111,22 @@ input[type="text"]:focus {
     border-radius: 8px;
 }
 
-select {
-    margin: 10px;
+.gameCard h3 {
+    min-height: 45px;
 }
 
+/* Game Links */
+.gameCard a {
+    color: #8ab4f8;
+    text-decoration: none;
+}
+
+.gameCard a:hover {
+    color: #a8c7fa;
+    text-decoration: underline;
+}
+
+/* Buttons */
 .button {
     appearance: none;
     border: none;
@@ -151,20 +151,7 @@ select {
     transform: translateY(1px);
 }
 
-#sortOptions select {
-    background-color: #101418;
-    color: #e8eaed;
-    padding: 3px;
-    border-radius: 10px;
-}
-
-#discoverGames,
-#libraryGames {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-}
-
+/* Library Controls */
 #libraryFilters {
     display: flex;
     gap: 8px;
@@ -177,18 +164,17 @@ select {
     align-items: center;
     gap: 20px;
     margin-bottom: 20px;
-    flex-wrap: 20px;
+    flex-wrap: wrap;
 }
 
-#gameSearchForm {
-    display: flex;
-    gap: 8px;
+#sortOptions select {
+    background-color: #101418;
+    color: #e8eaed;
+    padding: 3px;
+    border-radius: 10px;
 }
 
-#gameSearch {
-    width: 300px;
-}
-
+/* Game Status */
 .statusSelect {
     background-color: #3a3f44;
     color: #e8eaed;
@@ -201,19 +187,15 @@ select {
     transition: background-color 0.2s;
 }
 
-.remove {
-    background-color: #3a3f44;
-    color: #e8eaed;
-    border: none;
-    border-radius: 10px;
-    text-align: center;
-    padding: 8px 12px;
-    cursor: pointer;
-    transition:
-        background-color 0.2s,
-        transform 0.2s;
+.statusSelect:hover {
+    background-color: #4a5056;
 }
 
+.statusSelect:active {
+    transform: translateY(1px);
+}
+
+/* Rating */
 .rating {
     background-color: #3a3f44;
     color: #e8eaed;
@@ -228,9 +210,26 @@ select {
         transform 0.2s;
 }
 
-.statusSelect:hover,
 .rating:hover {
     background-color: #4a5056;
+}
+
+.rating:active {
+    transform: translateY(1px);
+}
+
+/* Remove */
+.remove {
+    background-color: #3a3f44;
+    color: #e8eaed;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition:
+        background-color 0.2s,
+        transform 0.2s;
 }
 
 .remove:hover {
@@ -238,12 +237,11 @@ select {
     transform: translateY(-1px);
 }
 
-.statusSelect:active,
-.remove:active,
-.rating:active {
+.remove:active {
     transform: translateY(1px);
 }
 
+/* Favorites */
 .favoriteButton {
     background: none;
     border: none;
@@ -260,6 +258,7 @@ select {
     transform: scale(1.1);
 }
 
+/* Notes */
 .gameNotes {
     width: 90%;
     min-height: 70px;
@@ -275,4 +274,19 @@ select {
 
 .gameNotes:focus {
     border-color: #6c8cff;
+}
+
+/* Messages */
+#notFound {
+    color: #ff0000;
+    display: none;
+}
+
+#duplicate {
+    display: none;
+    color: #ff0000;
+}
+
+select {
+    margin: 10px;
 }

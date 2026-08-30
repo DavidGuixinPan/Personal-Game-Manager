@@ -1,3 +1,4 @@
+// Data
 let library = [];
 
 // Game functions
@@ -9,6 +10,7 @@ async function searchGames(title) {
     const games = await response.json();
 
     const notFound = document.getElementById("notFound");
+    notFound.style.display = "none";
 
     if (games.length === 0) {
         notFound.style.display = "block";
@@ -30,6 +32,7 @@ async function discoverGames() {
     displayDiscoverGames(games);
 }
 
+// Display
 function displayGames(games) {
     const list = document.getElementById("games");
 
@@ -103,46 +106,6 @@ function displayGames(games) {
     }
 }
 
-function removeDuplicateGames(games) {
-    const uniqueGames = [];
-
-    for (let i = 0; i < games.length; i++) {
-        let duplicate = false;
-
-        for (let j = 0; j < uniqueGames.length; j++) {
-            if (games[i].title === uniqueGames[j].title) {
-                duplicate = true;
-                break;
-            }
-        }
-
-        if (!duplicate) {
-            uniqueGames.push(games[i]);
-        }
-    }
-    return uniqueGames;
-}
-
-function filterDiscoverGames(games) {
-    const availableGames = [];
-
-    for (let i = 0; i < games.length; i++) {
-        let alreadyOwned = false;
-
-        for (let j = 0; j < library.length; j++) {
-            if (games[i].steamAppID === library[j].steamAppID) {
-                alreadyOwned = true;
-                break;
-            }
-        }
-
-        if (!alreadyOwned) {
-            availableGames.push(games[i]);
-        }
-    }
-
-    return availableGames;
-}
 function displayDiscoverGames(games) {
     const container = document.getElementById("discoverGames");
 
@@ -199,74 +162,6 @@ function displayDiscoverGames(games) {
     }
 }
 
-function addGame(game, status = "wishlist") {
-    const duplicate = document.getElementById("duplicate");
-
-    duplicate.textContent = "";
-
-    for (let i = 0; i < library.length; i++) {
-        if (library[i].id === game.gameID) {
-            duplicate.style.display = "block";
-            duplicate.textContent =
-                game.external + " is already in your library.";
-            return;
-        }
-    }
-
-    const libraryGame = {
-        id: game.gameID,
-        steamAppID: game.steamAppID,
-        title: game.external || game.title,
-        image: game.thumb,
-        status: status,
-        added: new Date().toISOString(),
-        rating: 0,
-        favorite: false,
-        notes: "",
-    };
-
-    library.push(libraryGame);
-    updateLibrary();
-}
-
-function removeGame(gameId) {
-    for (let i = 0; i < library.length; i++) {
-        if (library[i].id === gameId) {
-            library.splice(i, 1);
-            break;
-        }
-    }
-
-    updateLibrary();
-}
-
-function sortGames(games, sortMethod) {
-    // Sort by A-Z
-    if (sortMethod === "titleAZ") {
-        games.sort(function (a, b) {
-            return a.title.localeCompare(b.title);
-        });
-        // Sort by Z-A
-    } else if (sortMethod === "titleZA") {
-        games.sort(function (a, b) {
-            return b.title.localeCompare(a.title);
-        });
-        // Sort by highest rated games
-    } else if (sortMethod === "ratingHigh") {
-        games.sort(function (a, b) {
-            return b.rating - a.rating;
-        });
-        // Sort by lowest rated games
-    } else if (sortMethod === "ratingLow") {
-        games.sort(function (a, b) {
-            return a.rating - b.rating;
-        });
-    }
-
-    return games;
-}
-
-// Library functions
 function displayLibrary(filter) {
     const libraryContainer = document.getElementById("libraryGames");
     const gameCount = document.getElementById("gameCount");
@@ -451,6 +346,117 @@ function displayLibrary(filter) {
     }
 }
 
+// Game Modification
+function addGame(game, status = "wishlist") {
+    const duplicate = document.getElementById("duplicate");
+
+    duplicate.textContent = "";
+
+    for (let i = 0; i < library.length; i++) {
+        if (library[i].id === game.gameID) {
+            duplicate.style.display = "block";
+            duplicate.textContent =
+                game.external + " is already in your library.";
+            return;
+        }
+    }
+
+    const libraryGame = {
+        id: game.gameID,
+        steamAppID: game.steamAppID,
+        title: game.external || game.title,
+        image: game.thumb,
+        status: status,
+        added: new Date().toISOString(),
+        rating: 0,
+        favorite: false,
+        notes: "",
+    };
+
+    library.push(libraryGame);
+    updateLibrary();
+}
+
+function removeGame(gameId) {
+    for (let i = 0; i < library.length; i++) {
+        if (library[i].id === gameId) {
+            library.splice(i, 1);
+            break;
+        }
+    }
+
+    updateLibrary();
+}
+
+// Filtering & Sorting
+function sortGames(games, sortMethod) {
+    // Sort by A-Z
+    if (sortMethod === "titleAZ") {
+        games.sort(function (a, b) {
+            return a.title.localeCompare(b.title);
+        });
+        // Sort by Z-A
+    } else if (sortMethod === "titleZA") {
+        games.sort(function (a, b) {
+            return b.title.localeCompare(a.title);
+        });
+        // Sort by highest rated games
+    } else if (sortMethod === "ratingHigh") {
+        games.sort(function (a, b) {
+            return b.rating - a.rating;
+        });
+        // Sort by lowest rated games
+    } else if (sortMethod === "ratingLow") {
+        games.sort(function (a, b) {
+            return a.rating - b.rating;
+        });
+    }
+
+    return games;
+}
+
+function removeDuplicateGames(games) {
+    const uniqueGames = [];
+
+    for (let i = 0; i < games.length; i++) {
+        let duplicate = false;
+
+        for (let j = 0; j < uniqueGames.length; j++) {
+            if (games[i].title === uniqueGames[j].title) {
+                duplicate = true;
+                break;
+            }
+        }
+
+        if (!duplicate) {
+            uniqueGames.push(games[i]);
+        }
+    }
+    return uniqueGames;
+}
+
+function filterDiscoverGames(games) {
+    const availableGames = [];
+
+    for (let i = 0; i < games.length; i++) {
+        let alreadyOwned = false;
+
+        for (let j = 0; j < library.length; j++) {
+            if (games[i].steamAppID === library[j].steamAppID) {
+                alreadyOwned = true;
+                break;
+            }
+        }
+
+        if (!alreadyOwned) {
+            availableGames.push(games[i]);
+        }
+    }
+
+    return availableGames;
+}
+
+// Storage
 function saveLibrary() {
     localStorage.setItem("library", JSON.stringify(library));
 }
@@ -474,11 +480,7 @@ function updateLibrary() {
     displayLibrary(currentFilter);
 }
 
-// Misc
-function capitalize(word) {
-    return word.charAt(0).toUpperCase() + word.slice(1);
-}
-
+// Variables
 const gameSearchForm = document.getElementById("gameSearchForm");
 const gameSearch = document.getElementById("gameSearch");
 const searchButton = document.getElementById("search");
@@ -491,6 +493,7 @@ const favorited = document.getElementById("favorites");
 const sortBy = document.getElementById("sortBy");
 let currentFilter = "all";
 
+// Listeners
 searchButton.addEventListener("click", () => {
     if (gameSearchForm.value) {
         searchGames(gameSearchForm.value);
@@ -499,8 +502,7 @@ searchButton.addEventListener("click", () => {
 
 gameSearchForm.addEventListener("submit", function (event) {
     event.preventDefault();
-    const searchBox = document.getElementById("gameSearch");
-    const text = searchBox.value;
+    const text = gameSearch.value;
 
     if (text) {
         searchGames(text);
@@ -541,6 +543,7 @@ sortBy.addEventListener("change", () => {
     displayLibrary(currentFilter);
 });
 
+// Main
 loadLibrary();
 displayLibrary(currentFilter);
 discoverGames();
